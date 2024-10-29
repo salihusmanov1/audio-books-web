@@ -1,6 +1,7 @@
 <template>
   <Transition name="fade">
     <div class="fixed z-10 inset-0 overflow-y-auto" id="modal" v-if="isOpen">
+
       <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
         <div class="fixed inset-0 transition-opacity">
           <div class="absolute inset-0 bg-gray-800 opacity-75"></div>
@@ -39,82 +40,9 @@
             </ul>
 
             <!-- Login Form -->
-            <form v-show="tab === 'login'">
-              <!-- Email -->
-              <div class="mb-3">
-                <label class="inline-block mb-2">Email</label>
-                <input type="email"
-                  class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-                  placeholder="Enter Email" />
-              </div>
-              <!-- Password -->
-              <div class="mb-3">
-                <label class="inline-block mb-2">Password</label>
-                <input type="password"
-                  class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-                  placeholder="Password" />
-              </div>
-              <button type="submit"
-                class="block w-full bg-amber-700 text-white py-1.5 px-3 rounded transition hover:bg-amber-600">
-                Submit
-              </button>
-            </form>
+            <login-form v-show="tab === 'login'"></login-form>
             <!-- Registration Form -->
-            <form v-show="tab === 'register'">
-              <!-- Name -->
-              <div class="mb-3">
-                <label class="inline-block mb-2">Name</label>
-                <input type="text"
-                  class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-                  placeholder="Enter Name" />
-              </div>
-              <!-- Email -->
-              <div class="mb-3">
-                <label class="inline-block mb-2">Email</label>
-                <input type="email"
-                  class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-                  placeholder="Enter Email" />
-              </div>
-              <!-- Age -->
-              <div class="mb-3">
-                <label class="inline-block mb-2">Age</label>
-                <input type="number"
-                  class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded" />
-              </div>
-              <!-- Password -->
-              <div class="mb-3">
-                <label class="inline-block mb-2">Password</label>
-                <input type="password"
-                  class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-                  placeholder="Password" />
-              </div>
-              <!-- Confirm Password -->
-              <div class="mb-3">
-                <label class="inline-block mb-2">Confirm Password</label>
-                <input type="password"
-                  class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
-                  placeholder="Confirm Password" />
-              </div>
-              <!-- Country -->
-              <div class="mb-3">
-                <label class="inline-block mb-2">Country</label>
-                <select
-                  class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded">
-                  <option value="USA">USA</option>
-                  <option value="Mexico">Mexico</option>
-                  <option value="Germany">Germany</option>
-                </select>
-              </div>
-              <!-- TOS -->
-              <div class="mb-3 pl-6">
-                <input type="checkbox" class="w-4 h-4 float-left -ml-6 mt-1 rounded" />
-                <label class="inline-block">Accept terms of service</label>
-              </div>
-              <button type="submit"
-                class="block w-full bg-amber-700 text-white py-1.5 px-3 rounded transition hover:bg-amber-600">
-                Submit
-              </button>
-            </form>
+            <register-form v-show="tab === 'register'"> </register-form>
           </div>
         </div>
       </div>
@@ -127,9 +55,13 @@ import { ref } from 'vue';
 import { useModalStore } from '@/stores/modal';
 import { storeToRefs } from 'pinia';
 
+import LoginForm from './LoginForm.vue';
+import RegisterForm from './RegisterForm.vue';
 
 const modalStore = useModalStore()
+
 const { isOpen } = storeToRefs(modalStore)
+
 
 const tab = ref('login');
 

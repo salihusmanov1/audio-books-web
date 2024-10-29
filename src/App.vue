@@ -2,24 +2,28 @@
   <!-- Header -->
   <app-header></app-header>
   <!-- Introduction -->
-  <section class="mb-8 text-white text-center relative m-2">
-    <div class=" absolute w-full inset-0 h-80 bg-cover bg-no-repeat bg-center introduction-bg rounded"
-      style="background-image: url(assets/img/header.jpg)">
+  <section class="h-80">
+    <div class="text-white text-center relative m-2 h-full">
+      <div class=" absolute w-full inset-0 h-80 bg-cover bg-no-repeat bg-center introduction-bg rounded">
 
-    </div>
-    <div class="container mx-auto h-80">
-      <div class="text-white main-header-content py-20 px-2 md:px-0 text-left">
-        <h1 class="font-bold text-4xl mb-5 text-neutral-500">Embrace the Journey with <span
-            class="text-amber-800">Earbound!</span>
-        </h1>
-        <p class="w-full w-1/2 text-neutral-500">
-          Your next adventure is just a listen away. Dive into thousands of audiobooks and let the stories take you
-          where the pages can’t.
-        </p>
       </div>
-    </div>
+      <div class="container mx-auto h-full flex items-center">
+        <!-- <div class="absolute bg-gray-500 opacity-50 h-40 w-full top-16 z-0 rounded">
+        </div> -->
+        <div class="w-full text-white main-header-content px-4 md:px-0 text-start rounded mb-4">
+          <h1 class="font-bold text-4xl mb-5 text-white">Embrace the Journey with
+            Earbound!
+          </h1>
+          <p class="w-1/2 text-white">
+            Your next adventure is just a listen away. Dive into thousands of audiobooks and let the stories take you
+            where the pages can’t.
+          </p>
+        </div>
+      </div>
 
+    </div>
   </section>
+
 
   <!-- Main Content -->
   <section class="container mx-2 ">
