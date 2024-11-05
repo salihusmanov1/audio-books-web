@@ -8,12 +8,18 @@
         <!-- Primary Navigation -->
         <ul class="flex flex-row mt-1">
           <!-- Navigation Links -->
-          <li>
-            <a class="px-2 text-white" href="#" @click="isOpen = !isOpen">Login / Register</a>
+          <li v-if="!userStore.userLoggedIn">
+            <a class="px-2 text-white cursor-pointer" @click="isOpen = !isOpen">Login / Register</a>
           </li>
-          <li>
-            <a class="px-2 text-white" href="#">Manage</a>
-          </li>
+          <template v-else>
+            <li>
+              <a class="px-2 text-white cursor-pointer" href="#">Manage</a>
+            </li>
+            <li>
+              <a class="px-2 text-white cursor-pointer" @click="signOut">Logout</a>
+            </li>
+          </template>
+
         </ul>
       </div>
     </nav>
@@ -22,11 +28,17 @@
 
 <script setup>
 import { useModalStore } from '@/stores/modal';
+import { useUserStore } from '@/stores/user';
 import { storeToRefs } from 'pinia';
+
+const userStore = useUserStore()
 
 const modalStore = useModalStore()
 const { isOpen } = storeToRefs(modalStore)
 
+async function signOut() {
+  await userStore.logout()
+}
 
 
 </script>

@@ -243,6 +243,23 @@
 
 
 <script setup>
+import { onMounted } from 'vue';
+import { storeToRefs } from 'pinia';
 import AppAuth from './components/AppAuth.vue';
 import AppHeader from './components/AppHeader.vue';
+import { auth } from './firebase';
+import { useUserStore } from './stores/user';
+
+
+const userStore = useUserStore()
+
+const { userLoggedIn } = storeToRefs(userStore)
+
+
+onMounted(() => {
+  if (auth.currentUser) {
+    userLoggedIn.value = true
+  }
+})
+
 </script>
