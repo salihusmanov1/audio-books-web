@@ -29,8 +29,15 @@ export default [
       'cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}',
       'cypress/support/**/*.{js,ts,jsx,tsx}'
     ],
+
+  },
+  {
     env: {
-      node: 'true',
+      browser: true,
+      node: true, // enables Node.js globals globally
+    },
+    globals: {
+      process: 'readonly',
     },
   },
   skipFormatting,

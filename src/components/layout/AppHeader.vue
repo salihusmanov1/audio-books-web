@@ -2,7 +2,8 @@
   <header id="header" class="bg-gray-700 m-2 rounded">
     <nav class="container mx-auto flex justify-start items-center py-5 px-4">
       <!-- App Name -->
-      <a class="text-white font-bold uppercase text-2xl mr-4" href="#">Earbound</a>
+      <router-link class="text-white font-bold uppercase text-2xl mr-4" :to="{ name: 'home' }"
+        exact-active-class="no-active">Earbound</router-link>
 
       <div class="flex flex-grow items-center">
         <!-- Primary Navigation -->
@@ -13,7 +14,7 @@
           </li>
           <template v-else>
             <li>
-              <a class="px-2 text-white cursor-pointer" href="#">Manage</a>
+              <router-link class="px-2 text-white cursor-pointer" :to="{ name: 'manage' }">Manage</router-link>
             </li>
             <li>
               <a class="px-2 text-white cursor-pointer" @click="signOut">Logout</a>
@@ -30,6 +31,10 @@
 import { useModalStore } from '@/stores/modal';
 import { useUserStore } from '@/stores/user';
 import { storeToRefs } from 'pinia';
+import { useRoute, useRouter } from 'vue-router';
+
+const route = useRoute()
+const router = useRouter()
 
 const userStore = useUserStore()
 
@@ -38,6 +43,10 @@ const { isOpen } = storeToRefs(modalStore)
 
 async function signOut() {
   await userStore.logout()
+
+  if (route.meta.auth) {
+    router.push({ name: 'home' })
+  }
 }
 
 
